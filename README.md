@@ -22,5 +22,5 @@ User can lists between many products, add them into the shopping cart and place 
   - Lombok  
   
   ### Other informations 
-  ###### [Documentation and analysis about project (in slovak language)](ecommerce-application/04-documentation/doc.pdf)  
+  ###### [Documentation and analysis about project (in slovak language)](04-documentation/doc.pdf)  
   
