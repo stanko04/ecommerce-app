@@ -6,5 +6,15 @@
 
 ### Technologies 
 
+- Database 
+  - MySQL
 - Backend 
-  - Spring Boot 
+  - Spring Boot, Java 
+- Frontend 
+  - HTML
+  - CSS 
+  - Angular
+- Others frameworks
+  - Bootstrap 
+  - FontAwesome 
+  - Lombok  
