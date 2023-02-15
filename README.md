@@ -23,4 +23,4 @@ User can lists between many products, add them into the shopping cart and place 
   
   ### Other informations 
   ###### [Documentation and analysis about project (in slovak language)](04-documentation/doc.pdf)  
-  
+  ###### [Powerpoint presentation about webpage] 
