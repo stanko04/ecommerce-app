@@ -20,3 +20,7 @@ User can lists between many products, add them into the shopping cart and place 
   - Bootstrap 
   - FontAwesome 
   - Lombok  
+  
+  ### Other informations 
+  ###### [Documentation and analysis about project (in slovak language)]()  
+  
