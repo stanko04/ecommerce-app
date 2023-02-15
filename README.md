@@ -21,6 +21,6 @@ User can lists between many products, add them into the shopping cart and place 
   - FontAwesome 
   - Lombok  
   
-  ### Other informations 
-  ###### [Documentation and analysis about project (in slovak language)](04-documentation/doc.pdf)  
-  ###### [Powerpoint presentation about webpage](05-presentation/presentation.pptx)
+  ## Other informations 
+  ### [Documentation and analysis about project (in slovak language)](04-documentation/doc.pdf)  
+  ### [Powerpoint presentation about webpage](05-presentation/presentation.pptx)
