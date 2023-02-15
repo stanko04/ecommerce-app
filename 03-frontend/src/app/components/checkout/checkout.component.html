@@ -1,0 +1,444 @@
+<div class="main-content page-m">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+
+      <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
+
+        <!-- customer form group -->
+        <div class="form-area" formGroupName="customer">
+          <h3>Zákazník</h3>
+
+          <div class="row">
+            <div class="col-md-2"><label>Meno</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="firstName" type="text">
+
+                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="firstName.errors.required || firstName.errors.notOnlyWhitespace">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="firstName.errors.minlength">
+                    Toto políčko musí obsahovať minimálne 2 znaky
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"><label>Priezvisko</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="lastName" type="text">
+
+                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger mt-1">
+
+                  <div *ngIf="lastName.errors.required || lastName.errors.notOnlyWhitespace">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="lastName.errors.minlength">
+                    Toto políčko musí obsahovať minimálne 2 znaky
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"><label>Email</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="email" type="text">
+
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger mt-1">
+
+                  <div *ngIf="email.errors.required">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="email.errors.pattern">
+                    Email musí byť vo forme email@email.com
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- shipping adress -->
+        <div class="form-area" formGroupName="shippingAdress">
+          <h3>Adresa doručenia</h3>
+
+          <div class="row">
+            <div class="col-md-2"><label>Krajina</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="country">
+                  <option *ngFor="let country of countries"> {{country}} </option>
+                </select>
+
+                <div
+                  *ngIf="shippingAdressCountry.invalid && (shippingAdressCountry.dirty || shippingAdressCountry.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="shippingAdressCountry.errors.required">
+                    Toto políčko je povinné
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"><label>Ulica</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="street" type="text">
+
+                <div
+                  *ngIf="shippingAdressStreet.invalid && (shippingAdressStreet.dirty || shippingAdressStreet.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="shippingAdressStreet.errors.required || shippingAdressStreet.errors.notOnlyWhitespace">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="shippingAdressStreet.errors.minlength">
+                    Toto políčko musí obsahovať minimálne 2 znaky
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"><label>Mesto</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="city" type="text">
+                <div *ngIf="shippingAdressCity.invalid && (shippingAdressCity.dirty || shippingAdressCity.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="shippingAdressCity.errors.required || shippingAdressCity.errors.notOnlyWhitespace">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="shippingAdressCity.errors.minlength">
+                    Toto políčko musí obsahovať minimálne 2 znaky
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="row">
+            <div class="col-md-2"><label>State</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="state">
+                  <option> TO DO </option>
+                </select>
+              </div>
+            </div>
+          </div>-->
+
+          <div class="row">
+            <div class="col-md-2"><label>PSČ</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="zipCode" type="text">
+                <div
+                  *ngIf="shippingAdressZipCode.invalid && (shippingAdressZipCode.dirty || shippingAdressZipCode.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="shippingAdressZipCode.errors.required || shippingAdressZipCode.errors.notOnlyWhitespace">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="shippingAdressZipCode.errors.minlength">
+                    Toto políčko musí obsahovať minimálne 2 znaky
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Add chceck box to copy shipping to billing -->
+        <div class="input-space">
+          <label class="au-checkbox">
+            <input type="checkbox" (change)="copyShippingAddressToBillingAddress($event)">
+            <span class="au-checkmark"></span>Adresa doručenia je rovnaká ako fakturovacia adresa
+          </label>
+        </div>
+
+        <!-- billing adress -->
+        <div class="form-area" formGroupName="billingAdress">
+          <h3>Fakturovacia adresa</h3>
+
+          <div class="row">
+            <div class="col-md-2"><label>Krajina</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="country">
+                  <option *ngFor="let country of countries"> {{country}} </option>
+                </select>
+
+                <div
+                  *ngIf="billingAdressCountry.invalid && (billingAdressCountry.dirty || billingAdressCountry.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="billingAdressCountry.errors.required">
+                    Toto políčko je povinné
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"><label>Ulica</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="street" type="text">
+
+                <div *ngIf="billingAdressStreet.invalid && (billingAdressStreet.dirty || billingAdressStreet.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="billingAdressStreet.errors.required || billingAdressStreet.errors.notOnlyWhitespace">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="billingAdressStreet.errors.minlength">
+                    Toto políčko musí obsahovať minimálne 2 znaky
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"><label>Mesto</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="city" type="text">
+
+                <div *ngIf="billingAdressCity.invalid && (billingAdressCity.dirty || billingAdressCity.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="billingAdressCity.errors.required || billingAdressCity.errors.notOnlyWhitespace">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="billingAdressCity.errors.minlength">
+                    Toto políčko musí obsahovať minimálne 2 znaky
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="row">
+            <div class="col-md-2"><label>State</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="state">
+                  <option> TO DO </option>
+                </select>
+              </div>
+            </div>
+          </div>-->
+
+          <div class="row">
+            <div class="col-md-2"><label>PSČ</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="zipCode" type="text">
+
+                <div
+                  *ngIf="billingAdressZipCode.invalid && (billingAdressZipCode.dirty || billingAdressZipCode.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="billingAdressZipCode.errors.required || billingAdressZipCode.errors.notOnlyWhitespace">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="billingAdressZipCode.errors.minlength">
+                    Toto políčko musí obsahovať minimálne 2 znaky
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- credit card -->
+        <div formGroupName="creditCard" class="form-area">
+
+          <h3>Kreditná karta</h3>
+
+          <div class="row">
+            <div class="col-md-2"><label>Typ karty</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="cardType">
+                  <option> Visa </option>
+                  <option> MasterCard </option>
+                </select>
+
+                <div *ngIf="creditCardType.invalid && (creditCardType.dirty || creditCardType.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="creditCardType.errors.required">
+                    Toto políčko je povinné
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-2"><label>Meno na karte</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="nameOnCard" type="text">
+
+                <div
+                  *ngIf="creditCardNameOnCard.invalid && (creditCardNameOnCard.dirty || creditCardNameOnCard.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="creditCardNameOnCard.errors.required || creditCardNameOnCard.errors.notOnlyWhitespace">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="creditCardNameOnCard.errors.minlength">
+                    Toto políčko musí obsahovať minimálne 2 znaky
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"><label>Číslo karty</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="cardNumber" type="text">
+
+                <div *ngIf="creditCardNumber.invalid && (creditCardNumber.dirty || creditCardNumber.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="creditCardNumber.errors.required">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="creditCardNumber.errors.pattern">
+                    Toto políčko musí obsahovať presne 16 čísel
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"><label>Bezpečnostný kód</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="securityCode" type="text">
+
+                <div
+                  *ngIf="creditCardSecurityCode.invalid && (creditCardSecurityCode.dirty || creditCardSecurityCode.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="creditCardSecurityCode.errors.required">
+                    Toto políčko je povinné
+                  </div>
+
+                  <div *ngIf="creditCardSecurityCode.errors.pattern">
+                    Toto políčko musí obsahovať presne 3 čísla
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"><label>Mesiac expirácie</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="expirationMonth">
+                  <option *ngFor="let month of creditCardMonths">
+                    {{month}}
+                  </option>
+                </select>
+                <div
+                  *ngIf="creditCardExpirationMonth.invalid && (creditCardExpirationMonth.dirty || creditCardExpirationMonth.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="creditCardExpirationMonth.errors.required">
+                    Toto políčko je povinné
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"><label>Rok expirácie</label></div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="expirationYear" (change)="handleMonthsAndYears()">
+                  <option *ngFor="let year of creditCardYears">
+                    {{year}}
+                  </option>
+                </select>
+                <div
+                  *ngIf="creditCardExpirationYear.invalid && (creditCardExpirationYear.dirty || creditCardExpirationYear.touched)"
+                  class="alert alert-danger mt-1">
+
+                  <div *ngIf="creditCardExpirationYear.errors.required">
+                    Toto políčko je povinné
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order details -->
+        <div class="form-area">
+          <h3>Zhrnutie objednávky</h3>
+          <p>Počet položiek: {{totalQuantity}}</p>
+          <p>Doprava: ZDARMA</p>
+          <p>Cena: {{ totalPrice | currency: 'EUR' }}</p>
+        </div>
+
+        <!-- submit button  -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-info">Objednať</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

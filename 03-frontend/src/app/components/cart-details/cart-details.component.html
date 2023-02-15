@@ -1,0 +1,77 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+
+      <div *ngIf="cartItems.length > 0">
+
+        <table class="table table-bordered">
+          <tr>
+            <th width="20%">Obrázok produkut</th>
+            <th width="50%">Názov a cena produktu</th>
+            <th width="30%"></th>
+          </tr>
+
+          <tr *ngFor="let tempCartItem of cartItems">
+            <td>
+              <img src="{{ tempCartItem.imageUrl }}" class="img-responsive" width="150px" />
+            </td>
+            <td>
+              <p>{{ tempCartItem.name }}</p>
+              <p>{{ tempCartItem.unitPrice | currency: 'EUR' }}</p>
+            </td>
+            <td>
+              <div class="items">
+                <label>Počet položiek:</label>
+
+                <div class="row no-gutters">
+                  <div class="col">
+                    <button (click)="incrementQuantity(tempCartItem)" class="btn btn-primary btn-sm">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+
+                  <div class="col ml-4 mr-2">
+                    {{tempCartItem.quantity}}
+                  </div>
+
+                  <div class="col">
+                    <button (click)="decrementQuantity(tempCartItem)" class="btn btn-primary btn-sm">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                  </div>
+
+                  <div class="col-8"></div>
+
+                </div>
+
+              </div>
+
+              <p><button (click)="remove(tempCartItem)" class="btn btn-primary btn-sm mt-2">Vymazať z košíka</button>
+              </p>
+              <!--<button (click)="remove(tempCartItem)" class="btn btn-primary btn-sm mt-2"> Remove </button>-->
+              <p class="mt-2">Spolu: {{ tempCartItem.quantity * tempCartItem.unitPrice | currency: 'EUR' }}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2"></td>
+            <td style="font-weight: bold">
+              <p>Počet položiek v košíku: {{ totalQuantity }}</p>
+              <p>Doprava: ZDARMA</p>
+              <p>Cena za objednávku: {{ totalPrice | currency: 'EUR' }}</p>
+              <p><a routerLink="/checkout" class="btn btn-primary">Pokračovať v objednávke</a></p>
+            </td>
+          </tr>
+
+        </table>
+
+      </div>
+
+      <!-- if cart is empty then  display a message -->
+      <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md12" role="alert">
+        Tvoj košík je prázdny
+      </div>
+
+    </div>
+  </div>
+</div>
