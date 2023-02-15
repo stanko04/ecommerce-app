@@ -15,7 +15,7 @@ User can lists between many products, add them into the shopping cart and place 
 - Frontend 
   - HTML
   - CSS 
-  - Angular
+  - Typescript, Angular
 - Others frameworks
   - Bootstrap 
   - FontAwesome 
